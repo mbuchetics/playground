@@ -4,20 +4,13 @@
 	<meta charset="utf-8">
 
 	<link rel="stylesheet" href="css/jquery.mobile-1.0b1.css"  media="screen" title="jquery mobile" charset="utf-8">
-	<script src="js/jquery-1.6.1.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/jquery.mobile-1.0b1.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
-	
 </head>
 <body>
 	<!-- Home Page -->
 	<div id="home" data-role="page">	
 		<div data-role="header">
 			<h1>Local Notes</h1>
-			<a href="#new" data-role="button" data-icon="plus" class="ui-btn-right">
+			<a href="#new" data-rel="dialog" data-transition="pop" data-role="button" data-icon="plus" class="ui-btn-right">
 				New
 			</a>
 		</div>	
@@ -28,7 +21,7 @@
 				<li><a href="#nearest">Nearest Notes</a></li>
 			</ul>
 			
-			<a href="#new" data-role="button" data-icon="plus" data-theme="b" class="ui-btn-right">
+			<a href="#new" data-rel="dialog" data-transition="pop" data-role="button" data-icon="plus" data-theme="b" class="ui-btn-right">
 				New Note
 			</a>			
 		</div>		
@@ -45,8 +38,36 @@
 					<label for="title">Title</label>
 					<input id="title" name="title" value="">
 				</div>
+				<div data-role="fieldcontain">
+					<label for="body">Body</label>
+					<textarea id="body" name="body"></textarea>
+				</div>
+				<button data-icon="check" data-theme="b">Save</button>				
 			</form>
 		</div>
 	</div>
+	
+	<!-- List of Notes -->
+	<div id="all" data-role="page" data-add-back-btn="true">
+		<div data-role="header">
+			<a href ="#home" data-role="button" data-icon="arrow-l" data-rel="back">Back</a>			
+			<h1>All Notes</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" id="all_notes">
+			</ul>
+		</div>
+	</div>
+	
+	<script type="text/template" id="node-list-item-template">
+		<a href="#note_<%= note.id %>"><%= note.get('title')%></a>
+	</script>
+	
+	<script src="js/jquery-1.6.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.mobile-1.0b1.js" type="text/javascript" charset="utf-8"></script>	
 </body>
 </html>

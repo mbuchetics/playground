@@ -20,11 +20,12 @@ window.Store = function(name) {
   this.records = (store && store.split(",")) || [];
 };
 
-_.extend(Store.prototype, {
+_.extend(Store.prototype, Backbone.Events, {
 
   // Save the current state of the **Store** to *localStorage*.
   save: function() {
     localStorage.setItem(this.name, this.records.join(","));
+	this.trigger('update');
   },
 
   // Add a model, giving it a (hopefully)-unique GUID, if it doesn't already
